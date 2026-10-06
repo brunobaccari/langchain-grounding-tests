@@ -1,0 +1,5 @@
+[
+  {"id": "basic-current", "product": "Basic", "active": true, "text": "O plano Basic permite reembolso em ate 14 dias."},
+  {"id": "basic-old", "product": "Basic", "active": false, "text": "Politica revogada: reembolso em 30 dias."},
+  {"id": "premium-current", "product": "Premium", "active": true, "text": "O plano Premium permite reembolso em ate 30 dias."}
+]
