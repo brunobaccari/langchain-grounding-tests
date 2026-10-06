@@ -1,0 +1,38 @@
+name: Grounding contracts
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Check tracked files
+        run: |
+          tracked=$(git ls-files --cached --ignored --exclude-standard)
+          test -z "$tracked" || { printf '%s\n' "$tracked"; exit 1; }
+      - run: python -m pip install -r requirements.txt
+      - run: python3 scripts/summary.py --self-test
+      - name: Run tests
+        id: tests
+        run: |
+          python -m pytest --junitxml=results/junit.xml
+      - name: Publish summary and enforce completeness
+        if: always()
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          EXPECTED_TESTS: '22'
+          TEST_SCOPE: 'Offline LangChain orchestration with scripted model outputs. No provider calls or claim of LLM prompt-injection resistance.'
+        run: python3 scripts/summary.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: results
+          path: results/
+          retention-days: 14
+          if-no-files-found: error
