@@ -41,3 +41,5 @@ Antes de alterar uma regra, mude o documento sintético e o teste correspondente
 Não há busca vetorial, ranking, memória persistente, benchmark de fornecedores ou avaliação live. A seleção é por metadados exatos. Referências: [testes no LangChain](https://docs.langchain.com/oss/python/langchain/test) e [modelos fake nativos](https://reference.langchain.com/python/langchain-core/language_models/fake_chat_models).
 
 O summary do Actions lista cada cenário, duração, totais e motivo de bloqueio. O gate exige a quantidade prevista no workflow, sem falhas ou skips; JUnit ausente ou inválido reprova. O resumo também acompanha o artifact.
+
+Husky: com Node 24 e as dependências da stack instalados, rode `npm ci` para ativar o pre-commit. `npm run check:local` verifica o diff, o gate dos relatórios e os checks de tipos/lint existentes. O hook também bloqueia arquivos ignorados no índice. Testes que usam navegador, emulador ou API continuam no CI.

@@ -6,3 +6,5 @@ results/
 .env.*
 !.env.example
 *.log
+node_modules/
+.husky/_/
