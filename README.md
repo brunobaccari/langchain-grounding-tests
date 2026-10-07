@@ -39,3 +39,5 @@ O corpus recusa IDs duplicados, campos inválidos e coleção vazia. Os testes u
 Antes de alterar uma regra, mude o documento sintético e o teste correspondente; não afrouxe o parser para aprovar uma saída incorreta. Depois da aprovação offline, ainda faltaria avaliar um modelo real e revisar se o prazo está sustentado pelo documento. O schema e uma fonte permitida não comprovam essa relação semântica.
 
 Não há busca vetorial, ranking, memória persistente, benchmark de fornecedores ou avaliação live. A seleção é por metadados exatos. Referências: [testes no LangChain](https://docs.langchain.com/oss/python/langchain/test) e [modelos fake nativos](https://reference.langchain.com/python/langchain-core/language_models/fake_chat_models).
+
+O summary do Actions lista cada cenário, duração, totais e motivo de bloqueio. O gate exige a quantidade prevista no workflow, sem falhas ou skips; JUnit ausente ou inválido reprova. O resumo também acompanha o artifact.

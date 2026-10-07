@@ -30,9 +30,20 @@ jobs:
           TEST_SCOPE: 'Offline LangChain orchestration with scripted model outputs. No provider calls or claim of LLM prompt-injection resistance.'
         run: python3 scripts/summary.py
       - uses: actions/upload-artifact@v4
+        id: artifact
         if: always()
         with:
           name: results
           path: results/
           retention-days: 14
           if-no-files-found: error
+      - name: Link dos resultados
+        if: always()
+        env:
+          ARTIFACT_URL: ${{ steps.artifact.outputs.artifact-url }}
+        run: |
+          if [ -n "$ARTIFACT_URL" ]; then
+            printf '\n[Baixar relatórios e evidências](%s)\n' "$ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '\nArtifact indisponível; confira a etapa de upload.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi

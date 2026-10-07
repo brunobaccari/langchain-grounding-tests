@@ -39,3 +39,5 @@ The corpus rejects duplicate IDs, invalid fields and empty collections. Scripted
 When changing a rule, update the synthetic document and its test together; do not relax the parser to approve invalid output. After offline approval, a real model evaluation and manual review of deadline support would still be needed. A valid schema and an allowed reference do not prove that semantic relationship.
 
 No vector search, ranking, persistent memory, vendor benchmark or live evaluation. Selection uses exact metadata. References: [LangChain testing](https://docs.langchain.com/oss/python/langchain/test) and [native fake models](https://reference.langchain.com/python/langchain-core/language_models/fake_chat_models).
+
+The Actions summary lists every scenario, duration, totals and blocking reason. The gate requires the count configured in the workflow, with no failures or skips; missing or invalid JUnit fails the gate. The summary is also included in the artifact.
